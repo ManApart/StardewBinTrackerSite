@@ -1,0 +1,58 @@
+<section ng-controller="mainController">
+	<div style="margin-top: 5%;"></div>
+	<div class ="container menu_border container" >
+		<div ng-show="showView == 0">
+			<graph-dir></graph-dir>
+		</div>
+		<div ng-show="showView == 1">
+			<h2>Want to track your stats?</h2>
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="instructions">
+						<p>1) <a href="http://www.nexusmods.com/stardewvalley/mods/321/?" target="_blank">Download the mod from the nexus, and install it.</a></p>
+						<p>2) Play the game with the mod enabled.</p>
+						<p>3) Get the stats file from: </p>
+						<p><pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre></p>
+						<p>4) Drag it into the shipping bin below the graph!</p> 
+					</div>
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+			<div class="row">
+				<input name="backButton" id="backButton" type="image" src="Resources/Back_Button.png" 
+					alt="Return" ng-click="showView = 0" class ="grow" />
+			</div>
+		</div>
+		<div ng-show="showView == 2">
+			<h2>Share your stats with this link!</h2>
+			<div style="margin-left: 10%; margin-right: 10%">
+				<p id="shareURL"><pre>{{getShareURL()}}</pre></p>
+				<p>(Stat Sharing not yet implemented)</p>
+			</div>
+			<div class="row">
+				<input name="backButton" id="backButton" type="image" src="Resources/Back_Button.png" 
+					alt="Return" ng-click="showView = 0" class ="grow" />
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div id ="buttomButtons" class="container" ng-show="showView == 0">
+		<div class="row">
+			<div class="col-sm-4 picture_button grow">
+				<input name="newButton" id="newButton" type="image" src="Resources/New_Button.png" 
+					alt="How to track stats" ng-click="showView = 1;" />
+			</div>
+			<div  class="col-sm-4" ng-click="loadFile();">
+				<div id="shippingBin" class="ship_bin"></div>
+			</div>
+			<input id="file_load" type="file" name="input-name" style="display: none;" />
+			<div class="col-sm-4 picture_button grow">
+				<input name="shareButton" id="shareButton" type="image" src="Resources/Share_Button.png" 
+					alt="Share your stats with others" ng-click="shareStats();" />
+			</div>
+		</div>
+		<div style="margin-top: 5%;"></div>
+	</div>
+	
+</section>

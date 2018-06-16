@@ -1,0 +1,77 @@
+input:focus, textarea:focus {
+    outline: none;
+}
+
+.main_background{
+	background-image: url(../Resources/title.png);
+	background-size: 100%;    
+    background-repeat: no-repeat;
+    background-color: #4bc10a;
+}
+
+
+.menu_border{
+	border-image-source: url(../Resources/Border.png);
+	border-image-slice: 30;
+	border-image-repeat: stretch;
+	border-image-width: 50px;
+	border-radius: 54px;
+	padding: 50px;
+
+	background-color: #ffd284;
+
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ship_bin{
+	background-image: url(../Resources/Bin_Closed.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center bottom;
+	margin: auto;
+	width: 252px;
+	height: 320px;
+}
+.ship_bin:hover{
+	background-image: url(../Resources/Bin_Open.png);
+}
+.ship_bin_hovered{
+	background-image: url(../Resources/Bin_Open.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center bottom;
+	margin: auto;
+	width: 252px;
+	height: 320px;
+}
+
+.picture_button{
+	text-align: center;
+	height: 320px;
+	display: flex;
+  	flex-direction: row;
+ }
+.picture_button input{
+	margin: auto;
+}
+
+
+.instructions {
+  	margin-left: 3%;
+    margin-right: 3%;
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+.invisible{
+	opacity: 0;
+	position: absolute;
+}
+.crop_detail{
+	font-size: 1.5em;
+}
+
