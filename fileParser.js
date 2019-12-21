@@ -145,7 +145,7 @@ function createCropHistory(playerName, farmName, playerStart, days) {
 			cropMap.years[day.year][day.season][day.day] = day;
 		}
 	}
-	console.log(cropMap);
+	// console.log(cropMap);
 	return cropMap;
 }
 

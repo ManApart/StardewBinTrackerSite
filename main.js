@@ -8,9 +8,11 @@ function readSingleFile(e) {
     console.log(file)
     var reader = new FileReader();
     reader.onload = function (e) {
-        var contents = e.target.result;
+        var contents = e.target.result
         const parsed = parseDataFile(contents)
-        console.log('read file', parsed);
+        console.log('read file', parsed)
+        localStorage.setItem("CropHistory", JSON.stringify(parsed))
+        // window.location.href = "./year.html"
     };
     reader.readAsText(file);
 }
