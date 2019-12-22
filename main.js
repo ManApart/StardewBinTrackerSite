@@ -16,20 +16,13 @@ function readFileFromEvent(e) {
     var contents = loadEvent.target.result
     cropHistory = parseDataFile(contents)
     console.log('read file', cropHistory)
-    setDayView(0, 0, 0)
+    setYearView(1)
   };
   reader.readAsText(file);
 }
 
 function setYearView(newYear) {
-  // if (newYear >= 0 && newYear < cropHistory.years.length) {
-  //   year = newYear
-  // }
   setDate(newYear, season, day)
-  // console.log('set year', year, cropHistory.years[year])
-  // season = 0
-  // day = 0
-
   const total = getShippedTotal(getDaysInYear(cropHistory, year)).toLocaleString()
 
   var template = $('#year-view-title-template').html();
