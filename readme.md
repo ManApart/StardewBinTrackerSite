@@ -1,5 +1,9 @@
 # Stardew Bin Tracker Site
 
+Download the [mod](https://www.nexusmods.com/stardewvalley/mods/321), use the [site](https://manapart.github.io/StardewBinTrackerSite/), or see an [example](https://manapart.github.io/StardewBinTrackerSite/?sample=true).
+
+
+## Running Locally
 Running locally for dev:
 
 ```
@@ -9,11 +13,8 @@ browser-sync start -s -f .
 
 ## Worthwhile Notes
 
-day and year are both 1 indexed
-season is 0 indexed
+day and year are both 1 indexed, while season is 0 indexed
 
 
 ## TODO
-
-publish / host with github pages
-pic/url for each category
+pic/url for each category?
