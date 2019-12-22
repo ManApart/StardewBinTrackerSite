@@ -15,6 +15,7 @@ input:focus, textarea:focus {
 	border-image-slice: 30;
 	border-image-repeat: stretch;
 	border-image-width: 50px;
+	border-style: solid;
 	border-radius: 54px;
 	padding: 50px;
 
