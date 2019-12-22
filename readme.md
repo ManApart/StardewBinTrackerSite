@@ -5,8 +5,10 @@ browser-sync start -s -f .
 ```
 
 
+Day View
+total per crop
+total per category
 
-Page per view
-query string for year season + day
-read file in once and save to session data
-reload button to re-load file
+Better next/previous handling.
+Inc up to / down to next day/season/year
+loop back to start if end reached
