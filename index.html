@@ -21,21 +21,43 @@
 <body class="main_background">
 	<div style="margin-top: 5%;"></div>
 	<div class="menu_border">
-		<h2>Want to track your stats?</h2>
-		<div class="instructions">
-			<p>1) <a href="http://www.nexusmods.com/stardewvalley/mods/321/?" target="_blank">Download the mod from the nexus, and install it.</a></p>
-			<p>2) Play the game with the mod enabled.</p>
-			<p>3) Get the stats file from:
-				<pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre>
-			</p>
-			<p>4) Drag it into the shipping bin below the graph!</p>
+		<div id="instructions">
+			<h2>Want to track your stats?</h2>
+			<div class="instructions">
+				<p>1) <a href="http://www.nexusmods.com/stardewvalley/mods/321/?" target="_blank">Download the mod from the nexus, and install it.</a></p>
+				<p>2) Play the game with the mod enabled.</p>
+				<p>3) Get the stats file from:
+					<pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre>
+				</p>
+				<p>4) Click the shipping bin below to load the stats into the graph!</p>
+			</div>
+		</div>
+
+		<div id="year-view">
+			Year View
+		</div>
+		<div id="season-view">
+			Season View
+		</div>
+		<div id="day-view">
+			Day View
 		</div>
 	</div>
-	<input type="file" id="open" class="ship_bin" />
-	<div>
-		<input name="backButton" id="backButton" type="image" src="Resources/Back_Button.png" alt="Return" class="grow" />
-	</div>
 
+	<div style="text-align: center;">
+		<input id="view-year-button" type="image" src="Resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(0)" />
+
+		<input id="view-season-button" type="image" src="Resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(0,0)" />
+
+		<input id="view-day-button" type="image" src="Resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(0,0,0)" />
+
+
+		<div id="shipping-bin-wrapper">
+			<label for="shipping-bin" class="ship_bin">
+				<div class="ship_bin"></div>
+			</label>
+			<input id="shipping-bin" type="file" style="display: none;" />
+		</div>
 	</div>
 
 </body>

@@ -46,16 +46,6 @@ input:focus, textarea:focus {
 	height: 320px;
 }
 
-.picture_button{
-	text-align: center;
-	height: 320px;
-	display: flex;
-  	flex-direction: row;
- }
-.picture_button input{
-	margin: auto;
-}
-
 
 .instructions {
   	margin-left: 3%;
