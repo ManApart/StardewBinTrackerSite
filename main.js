@@ -18,7 +18,8 @@ function readSingleFile(e) {
         console.log('read file', cropHistory)
         // localStorage.setItem("CropHistory", JSON.stringify(parsed))
         // window.location.href = "./year.html"
-        setYearView(0)
+        // setYearView(0)
+        setDayView(0, 0, 0)
     };
     reader.readAsText(file);
 }
@@ -56,7 +57,21 @@ function setDayView(year, season, newDay) {
     if (newDay >= 0 && newDay < cropHistory.years[year][season].length) {
         day = newDay
     }
-    console.log('set day', year, season, day, cropHistory.years[year][season][day])
+    const dayData = cropHistory.years[year][season][day]
+
+    console.log('set day', year, season, day, dayData)
+
+    if (!dayData) {
+        console.log('no day data')
+        $('#day-table').html("No Data for this day");
+    } else {
+        console.log('rendering data')
+        var template = $('#day-table-template').html();
+        Mustache.parse(template);
+        var rendered = Mustache.render(template, dayData);
+        $('#day-table').html(rendered);
+
+    }
     showDiv(views, "dayView")
     hideDiv(buttons, "viewDayButton")
 }
@@ -99,7 +114,6 @@ window.onload = function () {
     }
     showDiv(views, "instructions")
     showDiv(buttons, "shippingBin")
-
 
 }
 

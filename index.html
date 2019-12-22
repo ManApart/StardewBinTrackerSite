@@ -2,68 +2,98 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="shortcut icon" type="image/png" href="Resources/Cow.png" />
-	<title>Stardew Bin Tracker</title>
+  <link rel="shortcut icon" type="image/png" href="Resources/Cow.png" />
+  <title>Stardew Bin Tracker</title>
 
-	<link rel="stylesheet" type="text/css" href="CSS/styles.css">
-	<script src="./jquery.js"></script>
-	<script src="./jquery.csv.js"></script>
-	<script src="./jquery.csv.js"></script>
-	<script src="./main.js"></script>
-	<script src="./fileParser.js"></script>
+  <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+  <script src="./jquery.js"></script>
+  <script src="./jquery.csv.js"></script>
+  <script src="./mustache.js"></script>
+  <script src="./main.js"></script>
+  <script src="./fileParser.js"></script>
 
 </head>
 
 <body class="main_background">
-	<div style="margin-top: 5%;"></div>
-	<div class="menu_border">
-		<div id="instructions">
-			<h2>Want to track your stats?</h2>
-			<div class="instructions">
-				<p>1) <a href="http://www.nexusmods.com/stardewvalley/mods/321/?" target="_blank">Download the mod from the nexus, and install it.</a></p>
-				<p>2) Play the game with the mod enabled.</p>
-				<p>3) Get the stats file from:
-					<pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre>
-				</p>
-				<p>4) Click the shipping bin below to load the stats into the graph!</p>
-			</div>
-		</div>
+  <div style="margin-top: 5%;"></div>
+  <div class="menu_border">
+    <div id="instructions">
+      <h2>Want to track your stats?</h2>
+      <div class="instructions">
+        <p>1) <a href="http://www.nexusmods.com/stardewvalley/mods/321/?" target="_blank">Download the mod from the nexus, and install it.</a></p>
+        <p>2) Play the game with the mod enabled.</p>
+        <p>3) Get the stats file from:
+          <pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre>
+        </p>
+        <p>4) Click the shipping bin below to load the stats into the graph!</p>
+      </div>
+    </div>
 
-		<div id="year-view">
-			Year View
-			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setYearView(year - 1)" />
-			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year + 1)" />
-		</div>
-		<div id="season-view">
-			Season View
-			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setSeasonView(year, season - 1)" />
-			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year, season + 1)" />
-		</div>
-		<div id="day-view">
-			Day View
-			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setDayView(year, season, day - 1)" />
-			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setDayView(year, season, day + 1)" />
-		</div>
-	</div>
+    <div id="year-view">
+      Year View
+      <input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setYearView(year - 1)" />
+      <input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year + 1)" />
+    </div>
+    <div id="season-view">
+      Season View
+      <input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setSeasonView(year, season - 1)" />
+      <input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setSeasonView(year, season + 1)" />
+    </div>
+    <div id="day-view">
+      Day View
 
-	<div style="text-align: center;">
-		<input id="view-year-button" type="image" src="Resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(year)" />
+      <script id="day-table-template" type="x-tmpl-mustache">
+        Year: {{ year }} Season: {{season}} Day: {{day}}
+        Total: ${{getTotal}}
+				<table>
+					<tr>
+						{{#categories}}
+							{{#.}}
+								<td>
+									<table>
+										<tr>
+                      <td class="crop-header" style="color: {{color}}">{{name}}</td>
+                    </tr>
+                    {{#trackedCrops}}
+                    <tr><td>
+                    {{name}}: {{count}} * ${{price}}
+                    </tr></td>
+                    {{/trackedCrops}}
+                  </table>
+								</td>
+							{{/.}}
+						{{/categories}}
+					</tr>
+				</table>
+			</script>
 
-		<input id="view-season-button" type="image" src="Resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(year, season)" />
+      <div id="day-table"></div>
 
-		<input id="view-day-button" type="image" src="Resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(year, season, day)" />
+      <input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setDayView(year, season, day - 1)" />
+      <input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setDayView(year, season, day + 1)" />
+    </div>
+  </div>
 
-		<div id="shipping-bin-wrapper">
-			<label for="shipping-bin" class="ship_bin">
-				<div class="ship_bin"></div>
-			</label>
-			<input id="shipping-bin" type="file" style="display: none;" />
-		</div>
-	</div>
+  <div style="text-align: center;">
+    <input id="view-year-button" type="image" src="Resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(year)" />
+
+    <input id="view-season-button" type="image" src="Resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(year, season)" />
+
+    <input id="view-day-button" type="image" src="Resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(year, season, day)" />
+
+    <div id="shipping-bin-wrapper">
+      <label for="shipping-bin" class="ship_bin">
+        <div class="ship_bin"></div>
+      </label>
+      <input id="shipping-bin" type="file" style="display: none;" />
+    </div>
+  </div>
+
+
 
 </body>
 
