@@ -75,11 +75,12 @@
                     <td>
                       <table>
                         <tr>
-                          <td class="crop-header" style="color: {{color}}">{{name}}</td>
+                          <th class="crop-header" style="color: {{color}}">{{name}}<br/>${{total}}</th>
                         </tr>
                         {{#trackedCrops}}
                         <tr><td>
-                        {{name}}: {{count}} * ${{price}}
+                        {{name}} 
+                        <br/>${{total}} ({{count}} * ${{price}})
                         </tr></td>
                         {{/trackedCrops}}
                       </table>

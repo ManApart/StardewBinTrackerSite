@@ -112,17 +112,6 @@ function showDiv(divs, keyToShow) {
   })
 }
 
-function hideDiv(divs, keyToHide) {
-  Object.keys(buttons).forEach((key, index) => {
-    if (key == keyToHide) {
-      divs[key].style.display = "none"
-    } else {
-      divs[key].style.display = "block"
-    }
-  })
-}
-
-
 window.onload = function () {
   document.getElementById('shipping-bin').addEventListener('change', readFileFromEvent, false)
 

@@ -4,8 +4,13 @@ table {
   margin-bottom: 20px;
 }
 
+th {
+  text-align: center;
+}
+
 td {
   width: 165px;
+  text-align: left;
 }
 
 input:focus, textarea:focus {
