@@ -6,7 +6,7 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-.main_background{
+.main-background{
   
 	background-image: url(../resources/title.png);
 	background-size: 100%;    
@@ -14,7 +14,7 @@ input:focus, textarea:focus {
     background-color: #4bc10a;
 }
 
-.menu_border{
+.menu-border{
   margin: auto;
   width: fit-content;
 	border-image-source: url(../resources/Border.png);
@@ -32,26 +32,29 @@ input:focus, textarea:focus {
   margin-bottom: 20px;
 }
 
-.ship_bin{
+.ship-bin-wrapper{
+  position: absolute;
+  top: 0
+}
+
+.ship-bin{
 	background-image: url(../resources/Bin_Closed.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center bottom;
 	margin: auto;
-	width: 252px;
-	height: 320px;
+	width: 100px;
+	height: 135px;
 }
-.ship_bin:hover{
+.ship-bin:hover{
 	background-image: url(../resources/Bin_Open.png);
 }
-.ship_bin_hovered{
+.ship-bin-hovered{
 	background-image: url(../resources/Bin_Open.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center bottom;
 	margin: auto;
-	width: 252px;
-	height: 320px;
 }
 
 .instructions {
@@ -91,8 +94,16 @@ vertical-align: 100%;
 }
 
 .back-button {
-  padding-left: 100px;
-  padding-right: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.total {
+  font-size: 1.5em;
+}
+
+.total-text {
+  font-weight: bold;
 }
 
 

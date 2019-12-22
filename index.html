@@ -21,10 +21,10 @@
 
 </head>
 
-<body class="main_background">
+<body class="main-background">
   <div>
-    <div style="margin-top: 5%;"></div>
-    <div class="menu_border">
+    <div style="margin-top: 50px;"></div>
+    <div class="menu-border">
       <div id="instructions">
         <h2>Want to track your stats?</h2>
         <div class="instructions">
@@ -33,24 +33,27 @@
           <p>3) Get the stats file from:
             <pre>%AppData%\Roaming\StardewValley\Mods\Shipment Tracker</pre>
           </p>
-          <p>4) Click the shipping bin below to load the stats into the graph!</p>
+          <p>4) Click the shipping bin to load the stats into the graph!</p>
         </div>
       </div>
 
       <div id="year-view" class="graph">
         <script id="year-view-title-template" type="x-tmpl-mustache">
-          {{name}}'s Profit in Year {{year}}
+          <h2>{{name}}'s Profit in Year {{year}}</h2>
+          <div class="total"><span class="total-text">Total:</span> ${{total}}</div>
         </script>
         <div id="year-view-title"></div>
 
         <canvas id="year-chart" width="400" height="400" style="width: 400px; height: 400px;"></canvas>
+
         <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow arrow" onclick="setYearView(year - 1)" />
         <input type="image" src="resources/Back_Button.png" alt="Back" disabled class="faded back-button" />
         <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow arrow" onclick="setYearView(year + 1)" />
       </div>
       <div id="season-view" class="graph">
         <script id="season-view-title-template" type="x-tmpl-mustache">
-          {{name}}'s Profit in {{season}} of Year {{year}}
+          <h2>{{name}}'s Profit in {{season}} of Year {{year}}</h2>
+          <div class="total"><span class="total-text">Total:</span> ${{total}}</div>
         </script>
         <div id="season-view-title"></div>
         <canvas id="season-chart" width="400" height="400"></canvas>
@@ -61,9 +64,9 @@
       </div>
       <div id="day-view">
         <script id="day-table-template" type="x-tmpl-mustache">
-          {{name}}'s Profit in day {{dayData.day}} of {{season}}, Year {{dayData.year}}
+          <h2>{{name}}'s Profit in day {{dayData.day}} of {{season}}, Year {{dayData.year}}</h2>
           {{#dayData}}
-            <div>Total: ${{getTotal}}</div>
+            <div class="total"><span class="total-text">Total:</span> ${{total}}</div>
             <table>
               <tr>
                 {{#categories}}
@@ -95,13 +98,11 @@
       </div>
     </div>
 
-    <div style="text-align: center;">
-      <div id="shipping-bin-wrapper">
-        <label for="shipping-bin" class="ship_bin">
-          <div class="ship_bin"></div>
-        </label>
-        <input id="shipping-bin" type="file" style="display: none;" />
-      </div>
+    <div id="shipping-bin-wrapper" class="ship-bin-wrapper">
+      <label for="shipping-bin" class="ship-bin">
+        <div class="ship-bin"></div>
+      </label>
+      <input id="shipping-bin" type="file" style="display: none;" />
     </div>
   </div>
 

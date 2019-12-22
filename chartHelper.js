@@ -4,10 +4,29 @@ const daysInSeason = 29
 const seasons = ["Spring", "Summer", "Fall", "Winter"]
 const chartOptions = {
   onClick: chartClick,
+  legend: {
+    labels: {
+      fontColor: "#00"
+    }
+  },
   scales: {
-    xAxes: [{ stacked: true }],
-    yAxes: [{ stacked: true }]
+    xAxes: [{
+      stacked: true,
+      ticks: {
+        fontColor: "#000"
+      },
+      gridLines: {
+        display: false
+      }
+    }],
+    yAxes: [{
+      stacked: true,
+      ticks: {
+        fontColor: "#000"
+      }
+    }],
   }
+
 }
 
 var yearChart;
@@ -113,6 +132,17 @@ function getDataSets(sumEachSeason, categories, days) {
   }
 
   return dataSets;
+}
+
+function getShippedTotal(days) {
+  return days.map(day => {
+    if (day) {
+      return day.getTotal()
+    }
+    return 0
+  }).reduce((total, day) => {
+    return total + day
+  })
 }
 
 function getShippedTotalForCategory(sumEachSeason, days, category) {

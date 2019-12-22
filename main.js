@@ -27,11 +27,15 @@ function setYearView(newYear) {
   // console.log('set year', year, cropHistory.years[year])
   season = 0
   day = 0
+
+  const total = getShippedTotal(getDaysInYear(cropHistory, year)).toLocaleString()
+
   var template = $('#year-view-title-template').html();
   Mustache.parse(template);
   var rendered = Mustache.render(template, {
     name: cropHistory.name,
-    year: year
+    year: year,
+    total: total
   });
   $('#year-view-title').html(rendered);
 
@@ -50,12 +54,16 @@ function setSeasonView(year, newSeason) {
     day = 0
   }
   // console.log('set season', year, season, cropHistory.years[year][season])
+
+  const total = getShippedTotal(getDaysInSeason(cropHistory, year, season)).toLocaleString()
+
   var template = $('#season-view-title-template').html();
   Mustache.parse(template);
   var rendered = Mustache.render(template, {
     name: cropHistory.name,
     year: year,
-    season: seasons[season]
+    season: seasons[season],
+    total: total
   });
   $('#season-view-title').html(rendered);
 
@@ -85,7 +93,8 @@ function setDayView(year, season, newDay) {
     var rendered = Mustache.render(template, {
       name: cropHistory.name,
       season: seasons[season],
-      dayData: dayData
+      dayData: dayData,
+      total: dayData.getTotal().toLocaleString()
     });
     $('#day-table').html(rendered);
 
@@ -132,7 +141,7 @@ window.onload = function () {
 
     cropHistory = parseDataFile(sampleData)
     this.console.log('Showing example', this.cropHistory)
-    setYearView(1)
+    setYearView(0)
     // setSeasonView(1, 0)
     // setDayView(0, 0, 0)
   }

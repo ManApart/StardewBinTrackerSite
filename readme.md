@@ -11,6 +11,7 @@ browser-sync start -s -f .
 Day View
 total per crop
 total per category
+use larger text area
 
 Better next/previous handling.
 Inc up to / down to next day/season/year
@@ -23,3 +24,11 @@ publish / host with github pages
 
 pic/url for each category
 
+on hover labels show all goods
+
+general formatting of text sizes and bolding
+
+break out file parser from core logic, aggregators from chartHelper
+
+
+year with just one day not showing up
