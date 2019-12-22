@@ -35,22 +35,29 @@
 
 		<div id="year-view">
 			Year View
+			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setYearView(year - 1)" />
+			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year + 1)" />
 		</div>
 		<div id="season-view">
 			Season View
+
+
+			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setSeasonView(year, season - 1)" />
+			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year, season + 1)" />
 		</div>
 		<div id="day-view">
 			Day View
+			<input type="image" src="Resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setDayView(year, season, day - 1)" />
+			<input type="image" src="Resources/Arrow_Right.png" alt="Next" class="grow" onclick="setDayView(year, season, day + 1)" />
 		</div>
 	</div>
 
 	<div style="text-align: center;">
-		<input id="view-year-button" type="image" src="Resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(0)" />
+		<input id="view-year-button" type="image" src="Resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(year)" />
 
-		<input id="view-season-button" type="image" src="Resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(0,0)" />
+		<input id="view-season-button" type="image" src="Resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(year, season)" />
 
-		<input id="view-day-button" type="image" src="Resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(0,0,0)" />
-
+		<input id="view-day-button" type="image" src="Resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(year, season, day)" />
 
 		<div id="shipping-bin-wrapper">
 			<label for="shipping-bin" class="ship_bin">

@@ -1,6 +1,9 @@
 var cropHistory;
 var views = {}
 var buttons = {}
+var year = 0
+var season = 0
+var day = 0
 
 
 function readSingleFile(e) {
@@ -20,17 +23,40 @@ function readSingleFile(e) {
     reader.readAsText(file);
 }
 
-function setYearView(year) {
+function setYearView(newYear) {
+    if (newYear >= 0 && newYear < cropHistory.years.length) {
+        year = newYear
+    }
+    console.log('set year', year, cropHistory.years[year])
+    season = 0
+    day = 0
     showDiv(views, "yearView")
     hideDiv(buttons, "viewYearButton")
 }
 
-function setSeasonView(year, season) {
+function setSeasonView(year, newSeason) {
+    if (!cropHistory.years[year]) {
+        console.log('No data for year ' + year)
+        return
+    }
+    if (newSeason >= 0 && newSeason < cropHistory.years[year].length) {
+        season = newSeason
+        day = 0
+    }
+    console.log('set season', year, season, cropHistory.years[year][season])
     showDiv(views, "seasonView")
     hideDiv(buttons, "viewSeasonButton")
 }
 
-function setDayView(year, season, day) {
+function setDayView(year, season, newDay) {
+    if (!cropHistory.years[year] || !cropHistory.years[year][season]) {
+        console.log('No data for year ' + year + ' season ' + season)
+        return
+    }
+    if (newDay >= 0 && newDay < cropHistory.years[year][season].length) {
+        day = newDay
+    }
+    console.log('set day', year, season, day, cropHistory.years[year][season][day])
     showDiv(views, "dayView")
     hideDiv(buttons, "viewDayButton")
 }
