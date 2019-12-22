@@ -1,13 +1,12 @@
-const numOfCategories = 21
-const seasonsInYear = 4
-const daysInSeason = 29
-const seasons = ["Spring", "Summer", "Fall", "Winter"]
 const chartOptions = {
   onClick: chartClick,
   legend: {
     labels: {
       fontColor: "#00"
     }
+  },
+  tooltips: {
+    mode: 'label'
   },
   scales: {
     xAxes: [{
@@ -90,7 +89,7 @@ function chartClick(event) {
 function getDataSets(sumEachSeason, categories, days) {
   var dataSets = new Array();
 
-  for (var i = 0; i < numOfCategories; i++) {
+  for (var i = 0; i < categories.length; i++) {
     if (categories && categories[i]) {
       var priceData = getShippedTotalForCategory(sumEachSeason, days, i);
       if (!priceData.every((price) => price == 0)) {

@@ -1,3 +1,4 @@
+var categories = getCategories()
 var cropHistory;
 var views = {}
 var year = 0
@@ -21,12 +22,13 @@ function readFileFromEvent(e) {
 }
 
 function setYearView(newYear) {
-  if (newYear >= 0 && newYear < cropHistory.years.length) {
-    year = newYear
-  }
+  // if (newYear >= 0 && newYear < cropHistory.years.length) {
+  //   year = newYear
+  // }
+  setDate(newYear, season, day)
   // console.log('set year', year, cropHistory.years[year])
-  season = 0
-  day = 0
+  // season = 0
+  // day = 0
 
   const total = getShippedTotal(getDaysInYear(cropHistory, year)).toLocaleString()
 
@@ -44,16 +46,13 @@ function setYearView(newYear) {
   showDiv(views, "yearView")
 }
 
-function setSeasonView(year, newSeason) {
-  if (!cropHistory.years[year]) {
-    console.log('No data for year ' + year)
+function setSeasonView(newYear, newSeason) {
+  if (!cropHistory.years[newYear]) {
+    console.log('No data for year ' + newYear)
     return
   }
-  if (newSeason >= 0 && newSeason < cropHistory.years[year].length) {
-    season = newSeason
-    day = 0
-  }
-  // console.log('set season', year, season, cropHistory.years[year][season])
+  setDate(newYear, newSeason, day)
+  // console.log('set season', cropHistory.years[year][season])
 
   const total = getShippedTotal(getDaysInSeason(cropHistory, year, season)).toLocaleString()
 
@@ -72,14 +71,12 @@ function setSeasonView(year, newSeason) {
   showDiv(views, "seasonView")
 }
 
-function setDayView(year, season, newDay) {
-  if (!cropHistory.years[year] || !cropHistory.years[year][season]) {
-    console.log('No data for year ' + year + ' season ' + season)
+function setDayView(newYear, newSeason, newDay) {
+  if (!cropHistory.years[newYear] || !cropHistory.years[newYear][newSeason]) {
+    console.log('No data for year ' + newYear + ' season ' + newSeason)
     return
   }
-  if (newDay >= 0 && newDay < cropHistory.years[year][season].length) {
-    day = newDay
-  }
+  setDate(newYear, newSeason, newDay)
   const dayData = cropHistory.years[year][season][day]
 
   // console.log('set day', year, season, day, dayData)
@@ -112,6 +109,45 @@ function showDiv(divs, keyToShow) {
   })
 }
 
+function setDate(newYear, newSeason, newDay) {
+  if (newDay <= 0) {
+    newDay = daysInSeason - 1
+    newSeason = newSeason - 1
+  }
+
+  if (newSeason < 0) {
+    newSeason = seasons.length - 1
+    newYear = newYear - 1
+  }
+
+  if (newYear <= 0) {
+    newYear = 1
+    newSeason = 0
+    newDay = 1
+  }
+
+  if (newDay >= daysInSeason) {
+    newDay = 1
+    newSeason = newSeason + 1
+  }
+
+  if (newSeason >= seasons.length) {
+    newSeason = 0
+    newYear = newYear + 1
+  }
+
+  if (newYear >= cropHistory.years.length) {
+    newYear = cropHistory.years.length - 1
+    newSeason = seasons.length - 1
+    newDay = daysInSeason - 1
+  }
+  console.log('old dates', year, season, day)
+  year = newYear
+  season = newSeason
+  day = newDay
+  console.log('new dates', year, season, day)
+}
+
 window.onload = function () {
   document.getElementById('shipping-bin').addEventListener('change', readFileFromEvent, false)
 
@@ -130,9 +166,9 @@ window.onload = function () {
 
     cropHistory = parseDataFile(sampleData)
     this.console.log('Showing example', this.cropHistory)
-    // setYearView(0)
+    setYearView(1)
     // setSeasonView(1, 0)
-    setDayView(0, 0, 0)
+    // setDayView(0, 0, 0)
   }
 
 }

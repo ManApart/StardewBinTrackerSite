@@ -1,5 +1,3 @@
-var categories = getCategories()
-
 function parseDataFile(file) {
   var csvResult = parseCSV(file, ",");
   var playerName = csvResult[0][0];
