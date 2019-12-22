@@ -1,6 +1,5 @@
 var cropHistory;
 var views = {}
-var buttons = {}
 var year = 0
 var season = 0
 var day = 0
@@ -25,14 +24,20 @@ function setYearView(newYear) {
   if (newYear >= 0 && newYear < cropHistory.years.length) {
     year = newYear
   }
-  console.log('set year', year, cropHistory.years[year])
+  // console.log('set year', year, cropHistory.years[year])
   season = 0
   day = 0
+  var template = $('#year-view-title-template').html();
+  Mustache.parse(template);
+  var rendered = Mustache.render(template, {
+    name: cropHistory.name,
+    year: year
+  });
+  $('#year-view-title').html(rendered);
 
   loadYearChart(document.getElementById("year-chart").getContext('2d'), cropHistory, year)
 
   showDiv(views, "yearView")
-  hideDiv(buttons, "viewYearButton")
 }
 
 function setSeasonView(year, newSeason) {
@@ -44,12 +49,19 @@ function setSeasonView(year, newSeason) {
     season = newSeason
     day = 0
   }
-  console.log('set season', year, season, cropHistory.years[year][season])
+  // console.log('set season', year, season, cropHistory.years[year][season])
+  var template = $('#season-view-title-template').html();
+  Mustache.parse(template);
+  var rendered = Mustache.render(template, {
+    name: cropHistory.name,
+    year: year,
+    season: seasons[season]
+  });
+  $('#season-view-title').html(rendered);
 
   loadSeasonChart(document.getElementById("season-chart").getContext('2d'), cropHistory, year, season)
 
   showDiv(views, "seasonView")
-  hideDiv(buttons, "viewSeasonButton")
 }
 
 function setDayView(year, season, newDay) {
@@ -62,20 +74,23 @@ function setDayView(year, season, newDay) {
   }
   const dayData = cropHistory.years[year][season][day]
 
-  console.log('set day', year, season, day, dayData)
+  // console.log('set day', year, season, day, dayData)
 
   if (!dayData) {
     console.log('no day data')
-    $('#day-table').html("No Data for this day");
+    $('#day-table').html("No data for " + day + " of " + seasons[season] + " in year " + year);
   } else {
     var template = $('#day-table-template').html();
     Mustache.parse(template);
-    var rendered = Mustache.render(template, dayData);
+    var rendered = Mustache.render(template, {
+      name: cropHistory.name,
+      season: seasons[season],
+      dayData: dayData
+    });
     $('#day-table').html(rendered);
 
   }
   showDiv(views, "dayView")
-  hideDiv(buttons, "viewDayButton")
 }
 
 function showDiv(divs, keyToShow) {
@@ -108,22 +123,15 @@ window.onload = function () {
     "seasonView": document.getElementById('season-view'),
     "dayView": document.getElementById('day-view')
   }
-  buttons = {
-    "shippingBin": document.getElementById('shipping-bin-wrapper'),
-    "viewYearButton": document.getElementById('view-year-button'),
-    "viewSeasonButton": document.getElementById('view-season-button'),
-    "viewDayButton": document.getElementById('view-day-button')
-  }
   showDiv(views, "instructions")
-  showDiv(buttons, "shippingBin")
 
   const urlParams = new URLSearchParams(window.location.search);
   const useExampleData = urlParams.get('sample');
 
   if (useExampleData) {
-    this.console.log('Showing example')
 
     cropHistory = parseDataFile(sampleData)
+    this.console.log('Showing example', this.cropHistory)
     setYearView(1)
     // setSeasonView(1, 0)
     // setDayView(0, 0, 0)

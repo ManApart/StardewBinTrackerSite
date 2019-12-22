@@ -1,7 +1,7 @@
 const numOfCategories = 21
 const seasonsInYear = 4
 const daysInSeason = 29
-const seasons = ["Spring ", "Summer ", "Fall ", "Winter "]
+const seasons = ["Spring", "Summer", "Fall", "Winter"]
 const chartOptions = {
   onClick: chartClick,
   scales: {
@@ -10,14 +10,18 @@ const chartOptions = {
   }
 }
 
+var yearChart;
+var seasonChart;
+
 function loadYearChart(element, cropHistory, year) {
-  const title = cropHistory.name + "'s Profit in Year " + year
-  console.log('load year chart', title)
   const daysInYear = getDaysInYear(cropHistory, year)
   const datasets = getDataSets(true, categories, daysInYear)
-  console.log('year data', datasets)
 
-  new Chart(element, {
+  if (yearChart) {
+    yearChart.destroy()
+  }
+
+  yearChart = new Chart(element, {
     type: 'bar',
     data: {
       labels: seasons,
@@ -28,8 +32,6 @@ function loadYearChart(element, cropHistory, year) {
 }
 
 function loadSeasonChart(element, cropHistory, year, season) {
-  const title = cropHistory.name + "'s Profit in " + seasons[season] + " of Year " + year
-  console.log('load season chart', title)
   const daysOfSeason = getDaysInSeason(cropHistory, year, season)
   const datasets = getDataSets(false, categories, daysOfSeason)
   var labels = new Array();
@@ -37,9 +39,11 @@ function loadSeasonChart(element, cropHistory, year, season) {
     labels.push("Day " + i);
   }
 
-  console.log('season data', datasets)
+  if (seasonChart) {
+    seasonChart.destroy()
+  }
 
-  new Chart(element, {
+  seasonChart = new Chart(element, {
     type: 'bar',
     data: {
       labels: labels,
@@ -59,13 +63,10 @@ function chartClick(event) {
     if (seasons.includes(label)) {
       setSeasonView(year, seasons.indexOf(label))
     } else if (label.startsWith("Day ")) {
-      console.log(label.split(" "))
       setDayView(year, season, label.split(" ")[1])
     }
   }
-
 }
-
 
 function getDaysInYear(cropHistory, year) {
   var data = new Array();

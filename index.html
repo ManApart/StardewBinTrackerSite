@@ -38,7 +38,10 @@
       </div>
 
       <div id="year-view" class="graph">
-        Year View
+        <script id="year-view-title-template" type="x-tmpl-mustache">
+          {{name}}'s Profit in Year {{year}}
+        </script>
+        <div id="year-view-title"></div>
 
         <canvas id="year-chart" width="400" height="400" style="width: 400px; height: 400px;"></canvas>
         <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setYearView(year - 1)" />
@@ -46,7 +49,10 @@
         <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year + 1)" />
       </div>
       <div id="season-view" class="graph">
-        Season View
+        <script id="season-view-title-template" type="x-tmpl-mustache">
+          {{name}}'s Profit in {{season}} of Year {{year}}
+        </script>
+        <div id="season-view-title"></div>
         <canvas id="season-chart" width="400" height="400"></canvas>
 
         <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setSeasonView(year, season - 1)" />
@@ -54,31 +60,31 @@
         <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow" onclick="setSeasonView(year, season + 1)" />
       </div>
       <div id="day-view">
-        Day View
-
         <script id="day-table-template" type="x-tmpl-mustache">
-        Year: {{ year }} Season: {{season}} Day: {{day}}
-        Total: ${{getTotal}}
-				<table>
-					<tr>
-						{{#categories}}
-							{{#.}}
-								<td>
-									<table>
-										<tr>
-                      <td class="crop-header" style="color: {{color}}">{{name}}</td>
-                    </tr>
-                    {{#trackedCrops}}
-                    <tr><td>
-                    {{name}}: {{count}} * ${{price}}
-                    </tr></td>
-                    {{/trackedCrops}}
-                  </table>
-								</td>
-							{{/.}}
-						{{/categories}}
-					</tr>
-				</table>
+          {{name}}'s Profit in day {{dayData.day}} of {{season}}, Year {{dayData.year}}
+          {{#dayData}}
+            <div>Total: ${{getTotal}}</div>
+            <table>
+              <tr>
+                {{#categories}}
+                  {{#.}}
+                    <td>
+                      <table>
+                        <tr>
+                          <td class="crop-header" style="color: {{color}}">{{name}}</td>
+                        </tr>
+                        {{#trackedCrops}}
+                        <tr><td>
+                        {{name}}: {{count}} * ${{price}}
+                        </tr></td>
+                        {{/trackedCrops}}
+                      </table>
+                    </td>
+                  {{/.}}
+                {{/categories}}
+              </tr>
+            </table>
+        {{/dayData}}
 			</script>
 
         <div id="day-table"></div>
@@ -90,12 +96,6 @@
     </div>
 
     <div style="text-align: center;">
-      <input id="view-year-button" type="image" src="resources/View_Year.png" alt="View Year" class="grow" onclick="setYearView(year)" />
-
-      <input id="view-season-button" type="image" src="resources/View_Season.png" alt="View Season" class="grow" onclick="setSeasonView(year, season)" />
-
-      <input id="view-day-button" type="image" src="resources/View_Day.png" alt="View Day" class="grow" onclick="setDayView(year, season, day)" />
-
       <div id="shipping-bin-wrapper">
         <label for="shipping-bin" class="ship_bin">
           <div class="ship_bin"></div>
