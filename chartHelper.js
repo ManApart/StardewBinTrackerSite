@@ -87,34 +87,6 @@ function chartClick(event) {
   }
 }
 
-function getDaysInYear(cropHistory, year) {
-  var data = new Array();
-  for (var j = 0; j < seasonsInYear; j++) {
-    for (var i = 1; i < daysInSeason; i++) {
-      if (year in cropHistory.years && j in cropHistory.years[year] && i in cropHistory.years[year][j]) {
-        var day = cropHistory.years[year][j][i];
-        data.push(day);
-      } else {
-        data.push(null);
-      }
-    }
-  }
-  return data
-}
-
-function getDaysInSeason(cropHistory, year, season) {
-  var data = new Array();
-  for (var i = 1; i < daysInSeason; i++) {
-    if (year in cropHistory.years && season in cropHistory.years[year] && i in cropHistory.years[year][season]) {
-      var day = cropHistory.years[year][season][i];
-      data.push(day);
-    } else {
-      data.push(null);
-    }
-  }
-  return data
-}
-
 function getDataSets(sumEachSeason, categories, days) {
   var dataSets = new Array();
 
@@ -132,61 +104,4 @@ function getDataSets(sumEachSeason, categories, days) {
   }
 
   return dataSets;
-}
-
-function getShippedTotal(days) {
-  return days.map(day => {
-    if (day) {
-      return day.getTotal()
-    }
-    return 0
-  }).reduce((total, day) => {
-    return total + day
-  })
-}
-
-function getShippedTotalForCategory(sumEachSeason, days, category) {
-  var shipTotals = new Array();
-  for (var i = 0; i < days.length; i++) {
-    if (!days || !days[i] || !days[i].categories || !days[i].categories[category]) {
-      shipTotals.push(0);
-      continue;
-    }
-    shipTotals.push(days[i].categories[category].total);
-  }
-  //if whole year, sum into seasons
-  if (sumEachSeason) {
-    return sumForSeasons(shipTotals);
-  }
-
-  return shipTotals;
-}
-
-function sumForSeasons(shipTotals) {
-  var monthTotals = new Array();
-  //spring
-  var monthTotal = 0;
-  for (var i = 1; i < 28; i++) {
-    monthTotal += shipTotals[i];
-  }
-  monthTotals.push(monthTotal);
-  //summer
-  monthTotal = 0;
-  for (var i = 29; i < 56; i++) {
-    monthTotal += shipTotals[i];
-  }
-  monthTotals.push(monthTotal);
-  //fall
-  monthTotal = 0;
-  for (var i = 56; i < 84; i++) {
-    monthTotal += shipTotals[i];
-  }
-  monthTotals.push(monthTotal);
-  //winter
-  monthTotal = 0;
-  for (var i = 84; i < 112; i++) {
-    monthTotal += shipTotals[i];
-  }
-  monthTotals.push(monthTotal);
-  return monthTotals;
 }
