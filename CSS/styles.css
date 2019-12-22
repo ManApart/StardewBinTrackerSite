@@ -64,6 +64,11 @@ input:focus, textarea:focus {
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.1); }
 
+.faded {
+ filter: grayscale(90%)
+}
+
+
 .invisible{
 	opacity: 0;
 	position: absolute;
@@ -81,4 +86,6 @@ input:focus, textarea:focus {
 .graph {
   width: 600px;
 }
+
+
 

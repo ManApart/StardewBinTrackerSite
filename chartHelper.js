@@ -2,10 +2,17 @@ const numOfCategories = 21
 const seasonsInYear = 4
 const daysInSeason = 29
 const seasons = ["Spring ", "Summer ", "Fall ", "Winter "]
+const chartOptions = {
+  onClick: chartClick,
+  scales: {
+    xAxes: [{ stacked: true }],
+    yAxes: [{ stacked: true }]
+  }
+}
 
 function loadYearChart(element, cropHistory, year) {
-  console.log('load year chart', cropHistory)
   const title = cropHistory.name + "'s Profit in Year " + year
+  console.log('load year chart', title)
   const daysInYear = getDaysInYear(cropHistory, year)
   const datasets = getDataSets(true, categories, daysInYear)
   console.log('year data', datasets)
@@ -16,18 +23,13 @@ function loadYearChart(element, cropHistory, year) {
       labels: seasons,
       datasets: datasets
     },
-    options: {
-      scales: {
-        xAxes: [{ stacked: true }],
-        yAxes: [{ stacked: true }]
-      }
-    }
+    options: chartOptions
   });
 }
 
 function loadSeasonChart(element, cropHistory, year, season) {
-  console.log('load season chart')
   const title = cropHistory.name + "'s Profit in " + seasons[season] + " of Year " + year
+  console.log('load season chart', title)
   const daysOfSeason = getDaysInSeason(cropHistory, year, season)
   const datasets = getDataSets(false, categories, daysOfSeason)
   var labels = new Array();
@@ -43,14 +45,27 @@ function loadSeasonChart(element, cropHistory, year, season) {
       labels: labels,
       datasets: datasets
     },
-    options: {
-      scales: {
-        xAxes: [{ stacked: true }],
-        yAxes: [{ stacked: true }]
-      }
-    }
+    options: chartOptions
   });
 }
+
+function chartClick(event) {
+  const bar = this.getElementAtEvent(event)[0];
+  if (bar) {
+    const label = bar._model.label
+    const datasetLabel = bar._model.datasetLabel
+    console.log('chart click', label, datasetLabel)
+
+    if (seasons.includes(label)) {
+      setSeasonView(year, seasons.indexOf(label))
+    } else if (label.startsWith("Day ")) {
+      console.log(label.split(" "))
+      setDayView(year, season, label.split(" ")[1])
+    }
+  }
+
+}
+
 
 function getDaysInYear(cropHistory, year) {
   var data = new Array();
