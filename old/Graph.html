@@ -1,50 +1,47 @@
 <section ng-controller="chartController">
-	<div id="graphDiv">
-		<div class="row">
-			<h2>{{chartTitle}}</h2>
-		</div>
-		<div class="row" style="position: relative; margin: 50px;">
-			<div ng-class="(timePeriodZoom == 0) ? 'invisible' : ''">
-				<canvas id="cropGraph" width="800" height="400"></canvas>
-			</div>
-			<div ng-show="timePeriodZoom == 0">
-				<div class="row">
-					<div ng-repeat="category in currentTrackedDay.categories track by $index">
-						<div ng-if="category != null">
-							<div class="col-sm-6">
-								<h3 style="color:{{category.color}};'">{{category.name}}: {{addCommas(category.total)}}g</h3>
-								<div ng-repeat="crop in category.trackedCrops" class="row crop_detail">
-									{{crop.name}} x{{crop.count}} for {{addCommas(crop.count*crop.price)}}g
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<h2>Total: {{addCommas(currentTrackedDay.getTotal())}}g</h2>
-				</div>
-						
-			</div>
+  <div id="graphDiv">
+    <div class="row">
+      <h2>{{chartTitle}}</h2>
+    </div>
+    <div class="row" style="position: relative; margin: 50px;">
+      <div ng-class="(timePeriodZoom == 0) ? 'invisible' : ''">
+        <canvas id="cropGraph" width="800" height="400"></canvas>
+      </div>
+      <div ng-show="timePeriodZoom == 0">
+        <div class="row">
+          <div ng-repeat="category in currentTrackedDay.categories track by $index">
+            <div ng-if="category != null">
+              <div class="col-sm-6">
+                <h3 style="color:{{category.color}};'">{{category.name}}: {{addCommas(category.total)}}g</h3>
+                <div ng-repeat="crop in category.trackedCrops" class="row crop_detail">
+                  {{crop.name}} x{{crop.count}} for {{addCommas(crop.count*crop.price)}}g
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h2>Total: {{addCommas(currentTrackedDay.getTotal())}}g</h2>
+        </div>
 
-		</div>
-		<div class="row">
-			<div class="col-sm-4 ">
-				<input name="nextButton" id="nextButton" type="image" src="Resources/Arrow_Left.png" 
-						alt="Previous time period" ng-click="previousPeriod();" class ="grow"/>
-			</div>
-			<div class="col-sm-4 ">
-				<div ng-class="(timePeriodZoom == 2) ? 'invisible' : 'grow'">
-<!-- 				<div ng-hide="timePeriodZoom == 2"> -->
-					<input name="viewYearButton" id="viewYearButton" type="image" src="Resources/Back_Button.png" 
-						alt="View Year" ng-click="zoomTimePeriod(false);" class ="grow" />
-				</div>
-			</div>
-			<div class="col-sm-4 ">
-				<input name="nextButton" id="nextButton" type="image" src="Resources/Arrow_Right.png" 
-						alt="Next time period" ng-click="nextPeriod();" class ="grow" />
-			</div>
-		</div>
-	</div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-4 ">
+        <input name="nextButton" id="nextButton" type="image" src="resources/Arrow_Left.png" alt="Previous time period" ng-click="previousPeriod();" class="grow" />
+      </div>
+      <div class="col-sm-4 ">
+        <div ng-class="(timePeriodZoom == 2) ? 'invisible' : 'grow'">
+          <!-- 				<div ng-hide="timePeriodZoom == 2"> -->
+          <input name="viewYearButton" id="viewYearButton" type="image" src="resources/Back_Button.png" alt="View Year" ng-click="zoomTimePeriod(false);" class="grow" />
+        </div>
+      </div>
+      <div class="col-sm-4 ">
+        <input name="nextButton" id="nextButton" type="image" src="resources/Arrow_Right.png" alt="Next time period" ng-click="nextPeriod();" class="grow" />
+      </div>
+    </div>
+  </div>
 
 
 

@@ -7,14 +7,17 @@ input:focus, textarea:focus {
 }
 
 .main_background{
-	background-image: url(../Resources/title.png);
+  
+	background-image: url(../resources/title.png);
 	background-size: 100%;    
     background-repeat: no-repeat;
     background-color: #4bc10a;
 }
 
 .menu_border{
-	border-image-source: url(../Resources/Border.png);
+  margin: auto;
+  width: fit-content;
+	border-image-source: url(../resources/Border.png);
 	border-image-slice: 30;
 	border-image-repeat: stretch;
 	border-image-width: 50px;
@@ -25,11 +28,12 @@ input:focus, textarea:focus {
 	background-color: #ffd284;
 
 	text-align: center;
-	vertical-align: middle;
+  vertical-align: middle;
+  margin-bottom: 20px;
 }
 
 .ship_bin{
-	background-image: url(../Resources/Bin_Closed.png);
+	background-image: url(../resources/Bin_Closed.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center bottom;
@@ -38,10 +42,10 @@ input:focus, textarea:focus {
 	height: 320px;
 }
 .ship_bin:hover{
-	background-image: url(../Resources/Bin_Open.png);
+	background-image: url(../resources/Bin_Open.png);
 }
 .ship_bin_hovered{
-	background-image: url(../Resources/Bin_Open.png);
+	background-image: url(../resources/Bin_Open.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center bottom;
@@ -72,5 +76,9 @@ input:focus, textarea:focus {
 
 .crop_detail{
 	font-size: 1.5em;
+}
+
+.graph {
+  width: 600px;
 }
 

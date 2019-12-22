@@ -28,6 +28,9 @@ function setYearView(newYear) {
   console.log('set year', year, cropHistory.years[year])
   season = 0
   day = 0
+
+  loadYearChart(document.getElementById("year-chart").getContext('2d'), cropHistory, year)
+
   showDiv(views, "yearView")
   hideDiv(buttons, "viewYearButton")
 }
@@ -42,6 +45,9 @@ function setSeasonView(year, newSeason) {
     day = 0
   }
   console.log('set season', year, season, cropHistory.years[year][season])
+
+  loadSeasonChart(document.getElementById("season-chart").getContext('2d'), cropHistory, year, season)
+
   showDiv(views, "seasonView")
   hideDiv(buttons, "viewSeasonButton")
 }
@@ -118,7 +124,9 @@ window.onload = function () {
     this.console.log('Showing example')
 
     cropHistory = parseDataFile(sampleData)
-    setDayView(0, 0, 0)
+    setYearView(1)
+    // setSeasonView(1, 0)
+    // setDayView(0, 0, 0)
   }
 
 }

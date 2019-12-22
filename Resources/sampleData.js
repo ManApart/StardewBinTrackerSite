@@ -197,6 +197,6 @@ const sampleData = `Grandpa,Hope,2016040393225
 2,2,28,Cheese,94,21,5,33,Cranberries,158,9,5,84,Eggplant,78,41,9,92
 2,3,1,Eggplant,66,2,5,69,Cranberries Jelly,113,35,5,75,Cranberries,50,7,9,165
 2,3,2,Yam,170,48,6,197,Cheese,193,28,16,216,Mayonnaise,180,13,5,138,Mayonnaise,187,34,9,125,Artichoke,190,25,5,64,Cranberries,75,49,9,142,Cranberries,57,19,5,94,Cranberries,197,30,16,216,Corn,113,29,9,44,Artichoke,88,49,6,164
-2,3,3,Hazelnut,87,34,16,184,Corn,109,20,18,51,Cranberries,22,30,16,89,Mayonnaise,94,34,16,213,Cranberries,208,45,6,166,Mayonnaise,165,11,6,160,Corn,2,24,9,213,Hazelnut,130,30,5,72,Hazelnut,120,12,18,192
+2,3,3,Hazelnut,87,34,16,184,Corn,109,20,18,51,Cranberries,22,30,16,89,Mayonnaise,94,34,16,213,SomeFish,208,45,20,166,Mayonnaise,165,15,11,160,Corn,2,24,9,213,Hazelnut,130,30,5,72,Hazelnut,120,12,18,192
 2,3,4,Cranberries,72,40,18,210
 `
