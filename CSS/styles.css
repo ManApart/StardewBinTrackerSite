@@ -1,5 +1,11 @@
 table {
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+td {
+  width: 165px;
 }
 
 input:focus, textarea:focus {
@@ -106,5 +112,8 @@ vertical-align: 100%;
   font-weight: bold;
 }
 
+.day-view {
+  width: fit-content;
+}
 
 

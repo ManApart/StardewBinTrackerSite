@@ -141,9 +141,9 @@ window.onload = function () {
 
     cropHistory = parseDataFile(sampleData)
     this.console.log('Showing example', this.cropHistory)
-    setYearView(0)
+    // setYearView(0)
     // setSeasonView(1, 0)
-    // setDayView(0, 0, 0)
+    setDayView(0, 0, 0)
   }
 
 }

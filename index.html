@@ -62,7 +62,7 @@
         <input type="image" src="resources/Back_Button.png" alt="Back" class="grow back-button" onclick="setYearView(year)" />
         <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow arrow" onclick="setSeasonView(year, season + 1)" />
       </div>
-      <div id="day-view">
+      <div id="day-view" class="day-view">
         <script id="day-table-template" type="x-tmpl-mustache">
           <h2>{{name}}'s Profit in day {{dayData.day}} of {{season}}, Year {{dayData.year}}</h2>
           {{#dayData}}
