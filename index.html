@@ -44,9 +44,9 @@
         <div id="year-view-title"></div>
 
         <canvas id="year-chart" width="400" height="400" style="width: 400px; height: 400px;"></canvas>
-        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setYearView(year - 1)" />
-        <input type="image" src="resources/Back_Button.png" alt="Back" disabled class="faded" />
-        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow" onclick="setYearView(year + 1)" />
+        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow arrow" onclick="setYearView(year - 1)" />
+        <input type="image" src="resources/Back_Button.png" alt="Back" disabled class="faded back-button" />
+        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow arrow" onclick="setYearView(year + 1)" />
       </div>
       <div id="season-view" class="graph">
         <script id="season-view-title-template" type="x-tmpl-mustache">
@@ -55,9 +55,9 @@
         <div id="season-view-title"></div>
         <canvas id="season-chart" width="400" height="400"></canvas>
 
-        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setSeasonView(year, season - 1)" />
-        <input type="image" src="resources/Back_Button.png" alt="Back" class="grow" onclick="setYearView(year)" />
-        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow" onclick="setSeasonView(year, season + 1)" />
+        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow arrow" onclick="setSeasonView(year, season - 1)" />
+        <input type="image" src="resources/Back_Button.png" alt="Back" class="grow back-button" onclick="setYearView(year)" />
+        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow arrow" onclick="setSeasonView(year, season + 1)" />
       </div>
       <div id="day-view">
         <script id="day-table-template" type="x-tmpl-mustache">
@@ -89,9 +89,9 @@
 
         <div id="day-table"></div>
 
-        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow" onclick="setDayView(year, season, day - 1)" />
-        <input type="image" src="resources/Back_Button.png" alt="Back" class="grow" onclick="setSeasonView(year, season)" />
-        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow" onclick="setDayView(year, season, day + 1)" />
+        <input type="image" src="resources/Arrow_Left.png" alt="Previous" class="grow arrow" onclick="setDayView(year, season, day - 1)" />
+        <input type="image" src="resources/Back_Button.png" alt="Back" class="grow back-button" onclick="setSeasonView(year, season)" />
+        <input type="image" src="resources/Arrow_Right.png" alt="Next" class="grow arrow" onclick="setDayView(year, season, day + 1)" />
       </div>
     </div>
 

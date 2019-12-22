@@ -68,7 +68,6 @@ input:focus, textarea:focus {
  filter: grayscale(90%)
 }
 
-
 .invisible{
 	opacity: 0;
 	position: absolute;
@@ -85,6 +84,15 @@ input:focus, textarea:focus {
 
 .graph {
   width: 600px;
+}
+
+.arrow {
+vertical-align: 100%;
+}
+
+.back-button {
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 
